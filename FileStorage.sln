@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.WebApi", "src\FileStorage.WebApi\FileStorage.WebApi.csproj", "{3A7EF7D5-4681-43B0-B623-FB6172099D6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.Infrastructure", "src\FileStorage.Infrastructure\FileStorage.Infrastructure.csproj", "{9D7B02F6-EEF6-4289-9704-1F8EF8FABD68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.Core", "src\FileStorage.Core\FileStorage.Core.csproj", "{E7912D25-DAA4-4E0D-8228-6F8B52FA04EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.Core.Test", "tests\FileStorage.Core.Test\FileStorage.Core.Test.csproj", "{FC27033E-9F93-4162-BBBA-1B0ED7C2EFE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{64D38319-FD01-4A76-82DD-20B5595B7A23}"
+	ProjectSection(SolutionItems) = preProject
+		src\.dockerignore = src\.dockerignore
+		src\Dockerfile = src\Dockerfile
+		src\Dockerfile.Swagger = src\Dockerfile.Swagger
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{070BE77E-D819-454C-AA5E-1A27B53C8406}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.Cli", "src\FileStorage.Cli\FileStorage.Cli.csproj", "{8A0F1713-C22E-4614-B82A-19D1F0DCF744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileStorage.WebApi.Test", "tests\FileStorage.WebApi.Test\FileStorage.WebApi.Test.csproj", "{1B3F54A8-EDDE-4D92-AE05-1499BCF4DFC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A7EF7D5-4681-43B0-B623-FB6172099D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A7EF7D5-4681-43B0-B623-FB6172099D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A7EF7D5-4681-43B0-B623-FB6172099D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A7EF7D5-4681-43B0-B623-FB6172099D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D7B02F6-EEF6-4289-9704-1F8EF8FABD68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D7B02F6-EEF6-4289-9704-1F8EF8FABD68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D7B02F6-EEF6-4289-9704-1F8EF8FABD68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D7B02F6-EEF6-4289-9704-1F8EF8FABD68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7912D25-DAA4-4E0D-8228-6F8B52FA04EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7912D25-DAA4-4E0D-8228-6F8B52FA04EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7912D25-DAA4-4E0D-8228-6F8B52FA04EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7912D25-DAA4-4E0D-8228-6F8B52FA04EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC27033E-9F93-4162-BBBA-1B0ED7C2EFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC27033E-9F93-4162-BBBA-1B0ED7C2EFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC27033E-9F93-4162-BBBA-1B0ED7C2EFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC27033E-9F93-4162-BBBA-1B0ED7C2EFE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A0F1713-C22E-4614-B82A-19D1F0DCF744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A0F1713-C22E-4614-B82A-19D1F0DCF744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A0F1713-C22E-4614-B82A-19D1F0DCF744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A0F1713-C22E-4614-B82A-19D1F0DCF744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B3F54A8-EDDE-4D92-AE05-1499BCF4DFC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B3F54A8-EDDE-4D92-AE05-1499BCF4DFC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B3F54A8-EDDE-4D92-AE05-1499BCF4DFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B3F54A8-EDDE-4D92-AE05-1499BCF4DFC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A7EF7D5-4681-43B0-B623-FB6172099D6A} = {64D38319-FD01-4A76-82DD-20B5595B7A23}
+		{E7912D25-DAA4-4E0D-8228-6F8B52FA04EE} = {64D38319-FD01-4A76-82DD-20B5595B7A23}
+		{9D7B02F6-EEF6-4289-9704-1F8EF8FABD68} = {64D38319-FD01-4A76-82DD-20B5595B7A23}
+		{FC27033E-9F93-4162-BBBA-1B0ED7C2EFE2} = {070BE77E-D819-454C-AA5E-1A27B53C8406}
+		{8A0F1713-C22E-4614-B82A-19D1F0DCF744} = {64D38319-FD01-4A76-82DD-20B5595B7A23}
+		{1B3F54A8-EDDE-4D92-AE05-1499BCF4DFC6} = {070BE77E-D819-454C-AA5E-1A27B53C8406}
+	EndGlobalSection
+EndGlobal
