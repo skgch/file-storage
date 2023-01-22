@@ -57,12 +57,17 @@ internal class ApiClient : IApiClient
         using var httpClient = new HttpClient();
         using var response = await httpClient.GetAsync($"{BaseUrl}/api/files?cursor={cursor}");
 
-        if (response.StatusCode != HttpStatusCode.OK)
-            throw new Exception("Unknown error occurred.");
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new Exception("Cursor is invalid.");
 
-        var json = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<FileList>(json,
-            new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })!;
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<FileList>(json,
+                new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase })!;
+        }
+        
+        throw new Exception("Unknown error occurred.");
     }
 }
 
