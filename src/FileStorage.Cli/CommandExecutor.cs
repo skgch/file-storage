@@ -139,8 +139,10 @@ internal class CommandExecutor
             try
             {
                 var fileList = await _apiClient.GetListAsync(cursor);
+                Console.WriteLine("ID | CREATED TIME | UPDATED TIME | FILE NAME");
+                
                 foreach (var item in fileList.Items)
-                    Console.WriteLine($"{item.Id}\t{item.CreatedAt}\t{item.UpdatedAt}\t{item.FileName}");
+                    Console.WriteLine($"{item.Id} | {item.CreatedAt} | {item.UpdatedAt} | {item.FileName}");
 
                 if (fileList.NextCursor != null)
                     Console.WriteLine($"Next cursor: {fileList.NextCursor}");
