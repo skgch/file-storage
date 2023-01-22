@@ -46,6 +46,25 @@ internal class CommandExecutor
         return new FileInfo(filePath);
     }
 
+    private static string? ValidateCursor(ArgumentResult result)
+    {
+        if (!result.Tokens.Any())
+            return null;
+
+        var cursor = result.Tokens.Single().Value;
+        var timeAndId = cursor.Split("_", StringSplitOptions.RemoveEmptyEntries);
+
+        if (timeAndId.Length != 2
+            || !long.TryParse(timeAndId[0], out _)
+            || !Guid.TryParse(timeAndId[1], out _))
+        {
+            result.ErrorMessage = "Next cursor is invalid. Get next cursor from the previous page.";
+            return null;
+        }
+
+        return cursor;
+    }
+
     private Command BuildUploadCommand()
     {
         var uploadCommand = new Command("upload", "Upload the specified file to the storage.");
@@ -107,7 +126,11 @@ internal class CommandExecutor
     private Command BuildListCommand()
     {
         var listCommand = new Command("list", "Show list of files on the storage.");
-        var nextOption = new Option<string?>("--next", "Cursor to the next page.");
+        var nextOption = new Option<string?>(
+            name: "--next",
+            parseArgument:ValidateCursor,
+            isDefault: false,
+            description: "Cursor to the next page.");
 
         listCommand.AddOption(nextOption);
 
@@ -120,7 +143,7 @@ internal class CommandExecutor
                     Console.WriteLine($"{item.Id}\t{item.CreatedAt}\t{item.UpdatedAt}\t{item.FileName}");
 
                 if (fileList.NextCursor != null)
-                    Console.WriteLine($"See next page: {fileList.NextCursor}");
+                    Console.WriteLine($"Next cursor: {fileList.NextCursor}");
             }
             catch
             {
