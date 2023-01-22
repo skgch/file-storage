@@ -43,7 +43,7 @@ internal class ApiClient : IApiClient
         using var httpClient = new HttpClient();
         using var response = await httpClient.DeleteAsync($"{BaseUrl}/api/files/{id}");
 
-        if (response.StatusCode == HttpStatusCode.OK)
+        if (response.StatusCode == HttpStatusCode.NoContent)
             return;
 
         if (response.StatusCode == HttpStatusCode.NotFound)
