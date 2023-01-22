@@ -88,10 +88,10 @@ public class FilesController : ControllerBase
             if (!long.TryParse(timeAndId[0], out createdAtMilliSec))
                 return BadRequest(new ErrorResponse { Message = "Cursor is invalid." });
 
-            if (Guid.TryParse(timeAndId[0], out _))
+            if (!Guid.TryParse(timeAndId[1], out _))
                 return BadRequest(new ErrorResponse { Message = "Cursor is invalid." });
 
-            id = timeAndId[0];
+            id = timeAndId[1];
         }
         
         const int pageSize = 100;
