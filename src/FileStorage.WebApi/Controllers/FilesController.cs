@@ -82,13 +82,9 @@ public class FilesController : ControllerBase
         if (cursor != null)
         {
             var timeAndId = cursor.Split("_", StringSplitOptions.RemoveEmptyEntries);
-            if (timeAndId.Length != 2)
-                return BadRequest(new ErrorResponse { Message = "Cursor is invalid." });
-
-            if (!long.TryParse(timeAndId[0], out createdAtMilliSec))
-                return BadRequest(new ErrorResponse { Message = "Cursor is invalid." });
-
-            if (!Guid.TryParse(timeAndId[1], out _))
+            if (timeAndId.Length != 2
+                || !long.TryParse(timeAndId[0], out createdAtMilliSec)
+                || !Guid.TryParse(timeAndId[1], out _))
                 return BadRequest(new ErrorResponse { Message = "Cursor is invalid." });
 
             id = timeAndId[1];
