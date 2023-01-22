@@ -117,9 +117,11 @@ public class FilesController : ControllerBase
             Items = files.Take(pageSize).ToList()
         };
 
-        var last = response.Items.Last();
         if (files.Count > pageSize)
+        {
+            var last = response.Items.Last();
             response.NextCursor = last.CreatedAt.ToUnixTimeMilliseconds() + "_" + last.Id;
+        }
 
         return Ok(response);
     }

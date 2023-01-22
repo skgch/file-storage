@@ -179,7 +179,7 @@ public class FilesControllerTest
         // Assert
         Assert.That(result, Is.Not.Null);
         Assert.That(result!.StatusCode, Is.EqualTo(404));
-        
+
         var response = result.Value as ErrorResponse;
         Assert.That(response, Is.Not.Null);
         Assert.That(response!.Message, Is.EqualTo("File does not exist."));
@@ -195,7 +195,7 @@ public class FilesControllerTest
         var fileName = "test.csv";
         var createdAt = DateTimeOffset.Now;
         var updatedAt = createdAt + TimeSpan.FromDays(1);
-        
+
         var mock = new Mock<IFileStorageUseCase>();
         mock.Setup(x => x.GetAll())
             .Returns(new List<GetAllOutput>
@@ -208,14 +208,14 @@ public class FilesControllerTest
                     UpdatedAt = updatedAt
                 }
             });
-        
+
         var controller = new FilesController(mock.Object);
-        
+
         // Act
         var result = controller.GetFileList(null) as OkObjectResult;
         Assert.That(result, Is.Not.Null);
         Assert.That(result!.StatusCode, Is.EqualTo(200));
-        
+
         var response = result.Value as GetFileListResponse;
         Assert.That(response, Is.Not.Null);
         Assert.That(response!.NextCursor, Is.Null);
@@ -227,7 +227,7 @@ public class FilesControllerTest
 
         mock.Verify(x => x.GetAll(), Times.Once);
     }
-    
+
     [Test]
     [TestCase("1674371236440")]
     [TestCase("1674371236440_")]
@@ -238,19 +238,19 @@ public class FilesControllerTest
         // Arrange
         var mock = new Mock<IFileStorageUseCase>();
         var controller = new FilesController(mock.Object);
-        
+
         // Act
         var result = controller.GetFileList("invalid_cursor") as BadRequestObjectResult;
         Assert.That(result, Is.Not.Null);
         Assert.That(result!.StatusCode, Is.EqualTo(400));
-        
+
         var response = result.Value as ErrorResponse;
         Assert.That(response, Is.Not.Null);
         Assert.That(response!.Message, Is.EqualTo("Cursor is invalid."));
 
         mock.Verify(x => x.GetAll(), Times.Never);
     }
-    
+
     [Test]
     public void GetFileList_ReturnsNextCursorWhenNextPageExists()
     {
@@ -263,17 +263,17 @@ public class FilesControllerTest
                 CreatedAt = DateTimeOffset.Now + TimeSpan.FromMilliseconds(x),
                 UpdatedAt = DateTimeOffset.Now + TimeSpan.FromMilliseconds(x)
             }).ToList();
-        
+
         var mock = new Mock<IFileStorageUseCase>();
         mock.Setup(x => x.GetAll())
             .Returns(files);
         var controller = new FilesController(mock.Object);
-        
+
         // Act
         var result = controller.GetFileList(null) as OkObjectResult;
         Assert.That(result, Is.Not.Null);
         Assert.That(result!.StatusCode, Is.EqualTo(200));
-        
+
         var response = result.Value as GetFileListResponse;
         Assert.That(response, Is.Not.Null);
 
@@ -283,7 +283,7 @@ public class FilesControllerTest
 
         mock.Verify(x => x.GetAll(), Times.Once);
     }
-    
+
     [Test]
     public void GetFileList_ShouldNotReturnNextCursorWhenNextPageDoesExist()
     {
@@ -296,21 +296,43 @@ public class FilesControllerTest
                 CreatedAt = DateTimeOffset.Now + TimeSpan.FromMilliseconds(x),
                 UpdatedAt = DateTimeOffset.Now + TimeSpan.FromMilliseconds(x)
             }).ToList();
-        
+
         var mock = new Mock<IFileStorageUseCase>();
         mock.Setup(x => x.GetAll())
             .Returns(files);
         var controller = new FilesController(mock.Object);
-        
+
         // Act
         var result = controller.GetFileList(null) as OkObjectResult;
         Assert.That(result, Is.Not.Null);
         Assert.That(result!.StatusCode, Is.EqualTo(200));
-        
+
         var response = result.Value as GetFileListResponse;
         Assert.That(response, Is.Not.Null);
         Assert.That(response!.NextCursor, Is.Null);
         Assert.That(response.Items.Count, Is.EqualTo(100));
+
+        mock.Verify(x => x.GetAll(), Times.Once);
+    }
+
+    [Test]
+    public void GetFileList_ReturnsEmptyListWhenItemDoesNotExist()
+    {
+        // Arrange
+        var mock = new Mock<IFileStorageUseCase>();
+        mock.Setup(x => x.GetAll())
+            .Returns(new List<GetAllOutput>());
+        var controller = new FilesController(mock.Object);
+
+        // Act
+        var result = controller.GetFileList(null) as OkObjectResult;
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result!.StatusCode, Is.EqualTo(200));
+
+        var response = result.Value as GetFileListResponse;
+        Assert.That(response, Is.Not.Null);
+        Assert.That(response!.NextCursor, Is.Null);
+        Assert.That(response.Items.Count, Is.EqualTo(0));
 
         mock.Verify(x => x.GetAll(), Times.Once);
     }
