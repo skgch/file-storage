@@ -27,7 +27,7 @@ Before you access the API, create a directory where uploaded files are located.
 ```
 mkdir /storage
 ```
-You can also change the directory by editing `FileSystemStorage.Directory` in `appsettings.Development.json` file.
+You can also change the directory by editing `FileSystemStorage.Directory` in `src/FileStorage.WebApi/appsettings.Development.json` file.
 After changing the directory, restart the server to reflect the setting.
 
 ## CLI Installation
@@ -131,6 +131,8 @@ dotnet publish -c Release -r `{runtime id}` --self-contained false
 The results of the build are in `src\FileStorage.WebApi\bin\Release\net7.0\win-x64\publish` directory.
 Copy them to your deploy target machine and execute `dotnet FileStorage.WebApi.dll` to start the server.
 And then, Create `/store` directory on the host before accessing the API.
+You can change the directory with `FileSystemStorage.Directory` property in `src/FileStorage.WebApi/appsettings.Development.json`.
+Once you change the directory, please publish and restart the server.
 
 # CLI
 CLI also supports `upload`, `delete`, and `list` commands.
