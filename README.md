@@ -32,9 +32,10 @@ After changing the directory, restart the server to reflect the setting.
 
 ## CLI Installation
 Download CLI from the links below, depending on your OS.
-- Linux
-- Mac OS
-- Windows
+If you have a problem downloading the CLI, build the CLI from the code following `Build and Publish` in the `CLI` section.
+- [Linux](https://drive.google.com/file/d/1cdP7bvban9YLLIAGkMf6uXx7QAuoayhf/view?usp=share_link)
+- [Mac OS](https://drive.google.com/file/d/1djv2FDAIfSvj2S6FGBXXfWeeE6-aFM2o/view?usp=sharing)
+- [Windows](https://drive.google.com/file/d/1XQ_Q_Fg7hDTRSag_noZC_iGTeU0Vg--p/view?usp=sharing)
 
 Give the file permission to execute.
 ```
